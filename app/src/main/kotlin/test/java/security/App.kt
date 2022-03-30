@@ -1,5 +1,10 @@
 package test.java.security
 
+import org.bouncycastle.jce.provider.BouncyCastleProvider
+import java.security.Security
+
 fun main() {
-    sampleSignature()
+    Security.addProvider(BouncyCastleProvider())
+    val decrypted = "Hello java security!"
+    CipherSample.check(decrypted = decrypted)
 }

@@ -1,8 +1,8 @@
 # JavaSecuritySample
 Java security sample.
 
-1. Java Cryptography <--
-2. Cipher
+1. Java Cryptography
+2. Cipher <--
 3. MessageDigest
 4. Mac
 5. Signature

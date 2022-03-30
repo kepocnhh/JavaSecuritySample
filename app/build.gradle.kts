@@ -6,7 +6,7 @@ plugins {
 }
 
 dependencies {
-    // todo
+    implementation("org.bouncycastle:bcprov-jdk15on:1.70")
 }
 
 application {

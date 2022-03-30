@@ -7,10 +7,12 @@ import java.security.PrivateKey
 import java.security.PublicKey
 import java.security.SecureRandom
 import java.security.Signature
+import java.security.spec.AlgorithmParameterSpec
 import javax.crypto.Cipher
 import javax.crypto.KeyGenerator
 import javax.crypto.Mac
 import javax.crypto.SecretKey
+import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
 
 fun sampleCipherGetInstance() {
@@ -28,7 +30,15 @@ private fun secretKey(bytes: ByteArray, algorithm: String): SecretKey {
 fun sampleCipherInitEncrypt(cipher: Cipher) {
     val bytes = byteArrayOf(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15)
     val key = secretKey(bytes = bytes, algorithm = "RawBytes")
-    cipher.init(Cipher.ENCRYPT_MODE, key)
+    val iv: AlgorithmParameterSpec = IvParameterSpec(byteArrayOf(0, 1, 2))
+    cipher.init(Cipher.ENCRYPT_MODE, key, iv)
+}
+
+fun sampleCipherInitDecrypt(cipher: Cipher) {
+    val bytes = byteArrayOf(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15)
+    val key = secretKey(bytes = bytes, algorithm = "RawBytes")
+    val iv: AlgorithmParameterSpec = IvParameterSpec(byteArrayOf(0, 1, 2))
+    cipher.init(Cipher.DECRYPT_MODE, key, iv)
 }
 
 fun sampleKeyGenerator() {
@@ -87,12 +97,12 @@ private fun verify(algorithm: String, key: PublicKey, bytes: ByteArray, sign: By
 
 fun sampleSignature() {
     val algorithm = "SHA256WithDSA"
-    val encoded = "0123456789"
+    val decrypted = "0123456789"
     val keyPair = keyPair(algorithm = "DSA")
     val sign = sign(
         algorithm = algorithm,
         key = keyPair.private,
-        bytes = encoded.toByteArray(Charsets.UTF_8)
+        bytes = decrypted.toByteArray(Charsets.UTF_8)
     )
-    check(verify(algorithm = algorithm, key = keyPair.public, bytes = encoded.toByteArray(Charsets.UTF_8), sign = sign))
+    check(verify(algorithm = algorithm, key = keyPair.public, bytes = decrypted.toByteArray(Charsets.UTF_8), sign = sign))
 }
