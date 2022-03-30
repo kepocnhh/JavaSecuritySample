@@ -31,7 +31,22 @@ object CipherSample {
     }
 
     private fun cipher(algorithm: String): Cipher {
+        /**
+         * EBC — Electronic Codebook
+         * CBC — Cipher Block Chaining
+         * CFB — Cipher Feedback
+         * OFB — Output Feedback
+         * CTR — Counter
+         */
         val blockMode = "CBC"
+        /**
+         * NoPadding
+         * PKCS1Padding
+         * PKCS5Padding
+         * PKCS7Padding
+         * OAEPWithSHA-1AndMGF1Padding
+         * OAEPWithSHA-256AndMGF1Padding
+         */
         val paddings = "PKCS7Padding"
         val transformation = "$algorithm/$blockMode/$paddings"
         return Cipher.getInstance(transformation)
