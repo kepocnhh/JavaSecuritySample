@@ -9,10 +9,9 @@ import javax.crypto.spec.IvParameterSpec
 
 object CipherSample {
     fun check(decrypted: String) {
-        println("input: $decrypted")
         val algorithm = "AES"
         val random = SecureRandom()
-        val key = KeyGeneratorUtil.generateKey(algorithm = algorithm, random)
+        val key = KeyGeneratorUtil.generateKey(algorithm = algorithm, size = 256, random)
         val params = AlgorithmParameterSpecUtil.create(random)
         val cipher = cipher(algorithm = algorithm)
         val encrypted = cipher.encrypt(
@@ -26,7 +25,6 @@ object CipherSample {
             encrypted = encrypted
         )
         val decoded = String(result, Charsets.UTF_8)
-        println("output: $decoded")
         check(decrypted == decoded)
     }
 

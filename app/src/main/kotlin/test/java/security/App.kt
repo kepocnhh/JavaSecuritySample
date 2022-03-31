@@ -8,7 +8,8 @@ fun main() {
     val provider = BouncyCastleProvider.PROVIDER_NAME
     val decrypted = "Hello java security!"
     println("input: $decrypted")
-//    CipherSample.check(decrypted = decrypted)
+    CipherSample.check(decrypted = decrypted)
     MessageDigestSample.check(provider = provider, decrypted = decrypted)
     MacSample.check(provider = provider, decrypted = decrypted)
+    SignatureSample.check(provider = provider, decrypted = decrypted)
 }
