@@ -12,8 +12,8 @@ object CipherSample {
         println("input: $decrypted")
         val algorithm = "AES"
         val random = SecureRandom()
-        val key = key(algorithm = algorithm, random)
-        val params = params(random)
+        val key = KeyGeneratorUtil.generateKey(algorithm = algorithm, random)
+        val params = AlgorithmParameterSpecUtil.create(random)
         val cipher = cipher(algorithm = algorithm)
         val encrypted = cipher.encrypt(
             key = key,
@@ -50,19 +50,6 @@ object CipherSample {
         val paddings = "PKCS7Padding"
         val transformation = "$algorithm/$blockMode/$paddings"
         return Cipher.getInstance(transformation)
-    }
-
-    private fun key(algorithm: String, random: SecureRandom): Key {
-        val generator = KeyGenerator.getInstance(algorithm)
-        val size = 256
-        generator.init(size, random)
-        return generator.generateKey()
-    }
-
-    private fun params(random: SecureRandom): AlgorithmParameterSpec {
-        val bytes = ByteArray(16)
-        random.nextBytes(bytes)
-        return IvParameterSpec(bytes)
     }
 
     private fun encrypt(algorithm: String, key: Key, params: AlgorithmParameterSpec, decrypted: ByteArray): ByteArray {

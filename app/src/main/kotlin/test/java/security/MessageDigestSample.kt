@@ -3,8 +3,7 @@ package test.java.security
 import java.security.MessageDigest
 
 object MessageDigestSample {
-    fun check(decrypted: String) {
-        println("input: $decrypted")
+    fun check(provider: String, decrypted: String) {
         /**
          * MD2
          * MD5
@@ -14,18 +13,9 @@ object MessageDigestSample {
          * SHA-512
          */
         val algorithm = "SHA-512"
-        val md = messageDigest(algorithm = algorithm)
-        val result = md.digest(decrypted.toByteArray(Charsets.UTF_8))
-        val d = 4
-        val map = result.mapIndexed { index, byte -> index to byte }.groupBy { (index, _) -> index / d }
-        val blocks = map.map { (k, v) -> "${String.format("%2d", k)}|" + v.joinToString(separator = "|") { (_, byte) -> String.format("%4d", byte) }}
+        val md = MessageDigest.getInstance(algorithm, provider)
         println("$algorithm:")
-        println("  |" + (0 until d).joinToString(separator = "|") { String.format("%4d", it) })
-        println("--+" + (0 until d).joinToString(separator = "+") { "----" })
-        println(blocks.joinToString(separator = "\n"))
-    }
-
-    private fun messageDigest(algorithm: String): MessageDigest {
-        return MessageDigest.getInstance(algorithm)
+        val result = md.digest(decrypted.toByteArray(Charsets.UTF_8))
+        result.print()
     }
 }
