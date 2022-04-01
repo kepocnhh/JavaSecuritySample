@@ -13,5 +13,6 @@ fun main() {
 //    MacSample.check(provider = provider, decrypted = decrypted)
 //    SignatureSample.check(provider = provider, decrypted = decrypted)
 //    KeyPairSample.check(provider = provider)
-    KeyStoreSample.check(provider = provider)
+    CertificateSample.check(provider = provider)
+//    KeyStoreSample.check(provider = provider)
 }
