@@ -1,8 +1,8 @@
 package test.java.security
 
-import java.security.Key
 import java.security.SecureRandom
 import javax.crypto.KeyGenerator
+import javax.crypto.SecretKey
 
 object KeyGeneratorUtil {
     fun generateKey(
@@ -10,7 +10,7 @@ object KeyGeneratorUtil {
         algorithm: String,
         size: Int,
         random: SecureRandom
-    ): Key {
+    ): SecretKey {
         val generator = KeyGenerator.getInstance(algorithm, provider)
         generator.init(size, random)
         return generator.generateKey()
