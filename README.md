@@ -5,8 +5,8 @@ Java security sample.
 2. Cipher
 3. MessageDigest
 4. Mac
-5. Signature <--
-6. KeyPair
+5. Signature
+6. KeyPair <--
 7. KeyGenerator
 8. KeyPairGenerator
 9. KeyStore

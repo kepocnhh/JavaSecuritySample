@@ -8,10 +8,15 @@ import javax.crypto.KeyGenerator
 import javax.crypto.spec.IvParameterSpec
 
 object CipherSample {
-    fun check(decrypted: String) {
+    fun check(provider: String, decrypted: String) {
         val algorithm = "AES"
         val random = SecureRandom()
-        val key = KeyGeneratorUtil.generateKey(algorithm = algorithm, size = 256, random)
+        val key = KeyGeneratorUtil.generateKey(
+            provider = provider,
+            algorithm = algorithm,
+            size = 256,
+            random = random
+        )
         val params = AlgorithmParameterSpecUtil.create(random)
         val cipher = cipher(algorithm = algorithm)
         val encrypted = cipher.encrypt(
