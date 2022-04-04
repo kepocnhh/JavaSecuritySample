@@ -9,7 +9,7 @@ Java security sample.
 6. KeyPair
 7. KeyGenerator
 8. KeyPairGenerator
-9. KeyStore <--
+9. KeyStore
 10. Keytool
 11. Certificate
 12. CertificateFactory
