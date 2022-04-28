@@ -26,11 +26,29 @@ fun Cipher.encrypt(
     return doFinal(decrypted)
 }
 
+fun Cipher.encrypt(
+    key: PublicKey,
+    params: AlgorithmParameterSpec,
+    decrypted: ByteArray
+): ByteArray {
+    init(Cipher.ENCRYPT_MODE, key, params)
+    return doFinal(decrypted)
+}
+
 fun Cipher.decrypt(
     key: PrivateKey,
     encrypted: ByteArray
 ): ByteArray {
     init(Cipher.DECRYPT_MODE, key)
+    return doFinal(encrypted)
+}
+
+fun Cipher.decrypt(
+    key: PrivateKey,
+    params: AlgorithmParameterSpec,
+    encrypted: ByteArray
+): ByteArray {
+    init(Cipher.DECRYPT_MODE, key, params)
     return doFinal(encrypted)
 }
 
