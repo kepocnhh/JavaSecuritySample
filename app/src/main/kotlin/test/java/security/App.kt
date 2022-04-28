@@ -15,5 +15,6 @@ fun main() {
 //    KeyPairSample.check(provider = provider)
 //    CertificateSample.check(provider = provider)
 //    KeyStoreSample.check(provider = provider)
-    AsymmetricSample.run(provider = provider)
+//    AsymmetricSample.run(provider = provider)
+    SymmetricSample.run(provider = provider)
 }

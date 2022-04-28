@@ -2,7 +2,9 @@ package test.java.security
 
 import java.security.PrivateKey
 import java.security.PublicKey
+import java.security.spec.AlgorithmParameterSpec
 import javax.crypto.Cipher
+import javax.crypto.SecretKey
 
 object CipherUtil {
     fun getInstance(
@@ -29,5 +31,23 @@ fun Cipher.decrypt(
     encrypted: ByteArray
 ): ByteArray {
     init(Cipher.DECRYPT_MODE, key)
+    return doFinal(encrypted)
+}
+
+fun Cipher.encrypt(
+    key: SecretKey,
+    params: AlgorithmParameterSpec,
+    decrypted: ByteArray
+): ByteArray {
+    init(Cipher.ENCRYPT_MODE, key, params)
+    return doFinal(decrypted)
+}
+
+fun Cipher.decrypt(
+    key: SecretKey,
+    params: AlgorithmParameterSpec,
+    encrypted: ByteArray
+): ByteArray {
+    init(Cipher.DECRYPT_MODE, key, params)
     return doFinal(encrypted)
 }
