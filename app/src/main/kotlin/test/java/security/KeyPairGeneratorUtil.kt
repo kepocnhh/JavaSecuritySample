@@ -5,7 +5,7 @@ import java.security.KeyPairGenerator
 import java.security.SecureRandom
 
 object KeyPairGeneratorUtil {
-    fun generateKey(provider: String, algorithm: String, size: Int, random: SecureRandom): KeyPair {
+    fun generateKeyPair(provider: String, algorithm: String, size: Int, random: SecureRandom): KeyPair {
         val generator = KeyPairGenerator.getInstance(algorithm, provider)
         generator.initialize(size, random)
         return generator.generateKeyPair()

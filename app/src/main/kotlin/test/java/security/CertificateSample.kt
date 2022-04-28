@@ -11,7 +11,7 @@ import java.util.Locale
 object CertificateSample {
     fun check(provider: String) {
         val random = SecureRandom.getInstanceStrong()
-        val pair = KeyPairGeneratorUtil.generateKey(
+        val pair = KeyPairGeneratorUtil.generateKeyPair(
             provider = provider,
             algorithm = "RSA",
             size = 1024 * 2,

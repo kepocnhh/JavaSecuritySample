@@ -14,5 +14,6 @@ fun main() {
 //    SignatureSample.check(provider = provider, decrypted = decrypted)
 //    KeyPairSample.check(provider = provider)
 //    CertificateSample.check(provider = provider)
-    KeyStoreSample.check(provider = provider)
+//    KeyStoreSample.check(provider = provider)
+    AsymmetricSample.run(provider = provider)
 }

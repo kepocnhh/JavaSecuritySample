@@ -20,7 +20,7 @@ object SignatureSample {
         val algorithm = "SHA256WithDSA"
         val signature = Signature.getInstance(algorithm, provider)
         val random = SecureRandom()
-        val pair = KeyPairGeneratorUtil.generateKey(
+        val pair = KeyPairGeneratorUtil.generateKeyPair(
             provider = provider,
             algorithm = "DSA",
             size = 1024 * 2,

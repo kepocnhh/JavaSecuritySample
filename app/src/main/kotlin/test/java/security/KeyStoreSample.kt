@@ -127,7 +127,7 @@ object KeyStoreSample {
         keyPassword: String
     ) {
         val random = SecureRandom()
-        val pair = KeyPairGeneratorUtil.generateKey(
+        val pair = KeyPairGeneratorUtil.generateKeyPair(
             provider = provider,
             algorithm = "RSA",
             size = 1024 * 2,
